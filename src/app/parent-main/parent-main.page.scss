@@ -1,0 +1,11 @@
+.image-container {
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center;    /* Center vertically (if needed) */
+}
+
+.parent-image {
+    width: 30%;
+    height: auto;
+    margin-bottom: 20px;
+}
