@@ -1,0 +1,19 @@
+.video-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+  }
+  
+  ion-textarea {
+    width: 100%;
+    font-size: 1rem;
+  }
+  
+  .button-container {
+    display: flex;                
+    justify-content: center;      
+    align-items: center;          
+    gap: 16px;                    
+    height: 10%;                 
+  }

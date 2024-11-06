@@ -10,11 +10,11 @@ const routes: Routes = [
   
   {
     path: 'student-main',
-    loadChildren: () => import('../student-main/student-main.module').then(m => m.StudentMainPageModule)
+    loadChildren: () => import('../student/student-main/student-main.module').then(m => m.StudentMainPageModule)
   },
   {
     path: 'parent-main',
-    loadChildren: () => import('../parent-main/parent-main.module').then(m => m.ParentMainPageModule)
+    loadChildren: () => import('../parent/parent-main/parent-main.module').then(m => m.ParentMainPageModule)
   }
 ];
 

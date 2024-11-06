@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Navigate the Maze!</ion-title>
+    <ion-card-content>
+      Move your character to the finish box without hitting obstacles!
+    </ion-card-content>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="grid-container">
+    <ion-grid>
+      <ion-row *ngFor="let row of grid; let rowIndex = index">
+        <ion-col *ngFor="let col of row; let colIndex = index">
+          <ion-card>
+            <img [src]="getImageSource(rowIndex, colIndex)" class="cell-image" />
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+
+  <div class="button-container">
+    <ion-button (click)="moveCharacter('up')">Up</ion-button>
+    <ion-button (click)="moveCharacter('down')">Down</ion-button>
+    <ion-button (click)="moveCharacter('left')">Left</ion-button>
+    <ion-button (click)="moveCharacter('right')">Right</ion-button>
+  </div>
+</ion-content>

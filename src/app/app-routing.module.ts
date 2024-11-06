@@ -5,8 +5,10 @@ import { RegistrationMainPage } from './registration/registration-main/registrat
 import { TeacherRegistrationPage } from './registration/teacher-registration/teacher-registration.page';
 import { StudentRegistrationPage } from './registration/student-registration/student-registration.page';
 import { ParentRegistrationPage } from './registration/parent-registration/parent-registration.page';
-import { ParentMainPage } from './parent-main/parent-main.page';
-import { StudentMainPage } from './student-main/student-main.page';
+import { AssignmentPage } from './student/assignment/assignment.page';
+import { LessonPage } from './student/lesson/lesson.page';
+import { ParentMainPage } from './parent/parent-main/parent-main.page';
+import { StudentMainPage } from './student/student-main/student-main.page';
 import { HomePage } from './home/home.page';
 
 const routes: Routes = [
@@ -16,7 +18,8 @@ const routes: Routes = [
   { path: 'registration/teacher-registration', component: TeacherRegistrationPage },
   { path: 'registration/student-registration', component: StudentRegistrationPage },
   { path: 'registration/parent-registration', component: ParentRegistrationPage },
- 
+  { path: 'student/assignment', component: AssignmentPage },
+  { path: 'student/lesson', component: LessonPage },
 
   
   // Optional: If you still want to use lazy loading, remove the direct component paths above
@@ -39,16 +42,33 @@ const routes: Routes = [
   },
   {
     path: 'parent-main',
-    loadChildren: () => import('./parent-main/parent-main.module').then( m => m.ParentMainPageModule)
+    loadChildren: () => import('./parent/parent-main/parent-main.module').then( m => m.ParentMainPageModule)
   },
   {
     path: 'student-main',
-    loadChildren: () => import('./student-main/student-main.module').then( m => m.StudentMainPageModule)
+    loadChildren: () => import('./student/student-main/student-main.module').then( m => m.StudentMainPageModule)
   },
   {
     path: 'home',
     loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
   },
+  {
+    path: 'lesson',
+    loadChildren: () => import('./student/lesson/lesson.module').then( m => m.LessonPageModule)
+  },
+  {
+    path: 'assignment',
+    loadChildren: () => import('./student/assignment/assignment.module').then( m => m.AssignmentPageModule)
+  },  {
+    path: 'teacher-main',
+    loadChildren: () => import('./teacher/teacher-main/teacher-main.module').then( m => m.TeacherMainPageModule)
+  },
+  {
+    path: 'teacher-lesson',
+    loadChildren: () => import('./teacher/teacher-lesson/teacher-lesson.module').then( m => m.TeacherLessonPageModule)
+  },
+
+
 
 ];
 

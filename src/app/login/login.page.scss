@@ -1,0 +1,20 @@
+ion-content{
+    --background: var(--ion-color-success);
+}
+
+.header-title {
+    font-size: 2.5rem; /* Adjust size as needed */
+    font-family: 'Cursive', sans-serif; /* Use a cursive font or any other font you prefer */
+    font-weight: bold; /* Makes the font bold */
+    text-align: center; /* Center-aligns the text */
+    margin: 16px 0; /* Adjusts the margin around the text */
+    color: #333; /* Change the text color */
+}
+
+.button-container {
+    display: flex;                
+    justify-content: center;      
+    align-items: center;          
+    gap: 16px;                    
+    height: 10%;                 
+}
