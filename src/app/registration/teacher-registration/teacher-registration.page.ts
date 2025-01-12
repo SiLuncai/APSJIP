@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component } from '@angular/core'; 
 import { Auth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
-import { createUserWithEmailAndPassword } from '@firebase/auth';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { AlertController } from '@ionic/angular';
+import { Firestore, doc, setDoc } from '@angular/fire/firestore';  // Firestore imports
 
 @Component({
   selector: 'app-teacher-registration',
@@ -14,10 +15,16 @@ export class TeacherRegistrationPage {
   email: string = '';
   password: string = '';
   subject: string = '';
+  role: string = 'teacher';
   scode: string = '';
   predefinedCode: string = 't_skbalok'; // Predefined code for validation
 
-  constructor(private auth: Auth, private router: Router, private alertController: AlertController) {}
+  constructor(
+    private auth: Auth, 
+    private router: Router, 
+    private alertController: AlertController, 
+    private firestore: Firestore // Inject Firestore
+  ) {}
 
   async onSubmit() {
     // Validate the entered code
@@ -27,13 +34,21 @@ export class TeacherRegistrationPage {
     }
 
     try {
+      // Create the teacher user account
       const userCredential = await createUserWithEmailAndPassword(this.auth, this.email, this.password);
       console.log('Registration successful:', userCredential);
-      
-      // You can store additional teacher info in your database if needed
 
-      // Redirect to another page after registration
-      this.router.navigate(['/some-other-page']);
+      // Store the teacher's data in Firestore
+      const teacherDocRef = doc(this.firestore, `users/${userCredential.user.uid}`);
+      await setDoc(teacherDocRef, {
+        name: this.name,
+        email: this.email,
+        subject: this.subject,
+        role: this.role,
+        createdAt: new Date().toISOString()
+      });
+
+      this.router.navigate(['/login']); // Redirect to the login page after registration
     } catch (error: any) { // Handle error (using any type for simplicity)
       console.error('Registration error:', error);
       this.showAlert('Registration Error', error.message);

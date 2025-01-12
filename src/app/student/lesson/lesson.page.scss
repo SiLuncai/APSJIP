@@ -1,9 +1,6 @@
-.video-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: auto;
-  }
+ion-content{
+  --background: var(--ion-color-success);
+}
   
   ion-textarea {
     width: 100%;
@@ -16,4 +13,16 @@
     align-items: center;          
     gap: 16px;                    
     height: 10%;                 
+  }
+
+  .header-title {
+    text-align: center;
+    font-weight: bold;
+    margin-top: 50px;
+    color: white;  /* Sets the text color to white */
+    background-color: #259c6f;  /* Sets a dark blue background for contrast */
+    padding: 10px 20px;  /* Adds padding around the text */
+    width: fit-content;
+    margin-left: auto;  /* Centers the title block horizontally */
+    margin-right: auto;
   }

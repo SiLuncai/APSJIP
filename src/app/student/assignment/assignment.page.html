@@ -1,3 +1,5 @@
+<!-- src/app/assignment/assignment.page.html -->
+
 <ion-header>
   <ion-toolbar>
     <ion-title>Navigate the Maze!</ion-title>
@@ -5,9 +7,17 @@
       Move your character to the finish box without hitting obstacles!
     </ion-card-content>
   </ion-toolbar>
+
+  <!-- Step Counter -->
+  <ion-toolbar>
+    <ion-title>
+      Steps: {{ stepCount }}
+    </ion-title>
+  </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <!-- Display the grid -->
   <div class="grid-container">
     <ion-grid>
       <ion-row *ngFor="let row of grid; let rowIndex = index">
@@ -20,10 +30,26 @@
     </ion-grid>
   </div>
 
+  <!-- Navigation Buttons -->
   <div class="button-container">
-    <ion-button (click)="moveCharacter('up')">Up</ion-button>
-    <ion-button (click)="moveCharacter('down')">Down</ion-button>
-    <ion-button (click)="moveCharacter('left')">Left</ion-button>
-    <ion-button (click)="moveCharacter('right')">Right</ion-button>
+    <ion-button (click)="moveCharacter('up')">
+      <ion-icon slot="start" name="arrow-up-outline"></ion-icon>
+    </ion-button>
+
+    <ion-button (click)="moveCharacter('down')">
+      <ion-icon slot="start" name="arrow-down-outline"></ion-icon>
+    </ion-button>
+
+    <ion-button (click)="moveCharacter('left')">
+      <ion-icon slot="start" name="arrow-back-outline"></ion-icon>
+    </ion-button>
+
+    <ion-button (click)="moveCharacter('right')">
+      <ion-icon slot="start" name="arrow-forward-outline"></ion-icon>
+    </ion-button>
+  </div>
+
+  <div class="button-container">
+    <ion-button routerLink="/student-main">Back</ion-button>
   </div>
 </ion-content>

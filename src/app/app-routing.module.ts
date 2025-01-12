@@ -7,9 +7,9 @@ import { StudentRegistrationPage } from './registration/student-registration/stu
 import { ParentRegistrationPage } from './registration/parent-registration/parent-registration.page';
 import { AssignmentPage } from './student/assignment/assignment.page';
 import { LessonPage } from './student/lesson/lesson.page';
+import { TeacherAssignmentPage } from './teacher/teacher-assignment/teacher-assignment.page';
 import { ParentMainPage } from './parent/parent-main/parent-main.page';
 import { StudentMainPage } from './student/student-main/student-main.page';
-import { HomePage } from './home/home.page';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -19,8 +19,8 @@ const routes: Routes = [
   { path: 'registration/student-registration', component: StudentRegistrationPage },
   { path: 'registration/parent-registration', component: ParentRegistrationPage },
   { path: 'student/assignment', component: AssignmentPage },
-  { path: 'student/lesson', component: LessonPage },
-
+  { path: 'student/lessons', component: LessonPage },
+  { path: 'student-progress', loadChildren: () => import('./student-progress/student-progress.module').then(m => m.StudentProgressPageModule) },
   
   // Optional: If you still want to use lazy loading, remove the direct component paths above
 
@@ -49,23 +49,36 @@ const routes: Routes = [
     loadChildren: () => import('./student/student-main/student-main.module').then( m => m.StudentMainPageModule)
   },
   {
-    path: 'home',
-    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
-  },
-  {
     path: 'lesson',
     loadChildren: () => import('./student/lesson/lesson.module').then( m => m.LessonPageModule)
   },
   {
     path: 'assignment',
     loadChildren: () => import('./student/assignment/assignment.module').then( m => m.AssignmentPageModule)
-  },  {
+  },
+  {
     path: 'teacher-main',
     loadChildren: () => import('./teacher/teacher-main/teacher-main.module').then( m => m.TeacherMainPageModule)
   },
   {
     path: 'teacher-lesson',
     loadChildren: () => import('./teacher/teacher-lesson/teacher-lesson.module').then( m => m.TeacherLessonPageModule)
+  },
+  {
+    path: 'teacher-assignment',
+    loadChildren: () => import('./teacher/teacher-assignment/teacher-assignment.module').then(m => m.TeacherAssignmentPageModule)
+  }, 
+  {
+    path: 'class-management',
+    loadChildren: () => import('./teacher/class-management/class-management.module').then( m => m.ClassManagementPageModule)
+  },
+  {
+    path: 'class-main',
+    loadChildren: () => import('./teacher/class-main/class-main.module').then( m => m.ClassMainPageModule)
+  },
+  {
+    path: 'student-progress',
+    loadChildren: () => import('./student-progress/student-progress.module').then( m => m.StudentProgressPageModule)
   },
 
 

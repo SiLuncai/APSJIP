@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Create Your Maze!</ion-title>
+    <ion-card-content>
+      Customize the maze by adding paths, obstacles, a start, and a finish point.
+    </ion-card-content>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!-- Display the grid -->
+  <div class="grid-container">
+    <ion-grid>
+      <ion-row *ngFor="let row of grid; let rowIndex = index">
+        <ion-col *ngFor="let col of row; let colIndex = index">
+          <ion-card (click)="toggleCell(rowIndex, colIndex)">
+            <img [src]="getImageSource(rowIndex, colIndex)" class="cell-image" />
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+
+  <!-- Button Container -->
+  <div class="button-container">
+    <ion-button expand="full" (click)="saveMaze()">Save Maze</ion-button>
+    <ion-button expand="full" (click)="resetGrid()">Reset Maze</ion-button>
+    <ion-button routerLink="/teacher-main">Back</ion-button>
+  </div>
+
+  <!-- Display Saved Mazes -->
+  <ion-list>
+    <ion-item *ngFor="let maze of mazes">
+      <ion-label>
+        <h2 *ngIf="!maze.isEditing">{{ maze.title || 'Untitled Maze' }}</h2>
+        <ion-input *ngIf="maze.isEditing" [(ngModel)]="maze.newTitle" placeholder="Enter new title"></ion-input>
+      </ion-label>
+      <ion-button fill="clear" (click)="toggleEdit(maze)">{{ maze.isEditing ? 'Save Title' : 'Edit Title'
+        }}</ion-button>
+      <ion-button fill="clear" (click)="deleteMaze(maze.id)">Delete</ion-button>
+    </ion-item>
+  </ion-list>
+</ion-content>

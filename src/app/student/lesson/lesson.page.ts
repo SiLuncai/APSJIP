@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-lesson',
@@ -6,9 +7,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./lesson.page.scss'],
 })
 export class LessonPage {
-  lessonDescription: string = '';
 
-  constructor() {}
+  constructor(private router: Router) { }
 
-  // You can add more logic here, like saving the description or loading data
+  goToLesson(level: string) {
+    // Logic to navigate to the selected level's lesson page
+    this.router.navigateByUrl(`/lesson/${level}`);
+  }
 }

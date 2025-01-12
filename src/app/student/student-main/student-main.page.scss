@@ -4,12 +4,22 @@
     align-items: center;    /* Center vertically (if needed) */
 }
 
-.parent-image {
-    width: 30%;
-    height: auto;
-    margin-bottom: 20px;
-}
 
 ion-content{
     --background: var(--ion-color-success);
 }
+  
+.header-title {
+    text-align: center;
+    font-weight: bold;
+    margin-top: 50px;
+    color: white;  /* Sets the text color to white */
+    background-color: #259c6f;  /* Sets a dark blue background for contrast */
+    padding: 10px 20px;  /* Adds padding around the text */
+    width: fit-content;
+    margin-left: auto;  /* Centers the title block horizontally */
+    margin-right: auto;
+  }
+  
+  
+  

@@ -1,0 +1,30 @@
+.center-spinner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  }
+  
+  .no-students {
+    text-align: center;
+    margin-top: 20px;
+    color: #888;
+  }
+  
+  .button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  
+  .table-row {
+    --border-color: #ddd; /* Set the color of the border */
+    --border-width: 1px; /* Set the width of the border */
+    --border-style: solid; /* Set the border style */
+    border-bottom: var(--border-width) var(--border-style) var(--border-color);
+  }
+  
+  .table-row:last-child {
+    border-bottom: none; /* Remove the border for the last row */
+  }
+  

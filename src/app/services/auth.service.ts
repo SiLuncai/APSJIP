@@ -1,17 +1,58 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, User } from '@angular/fire/auth';
+import { Firestore, doc, setDoc } from '@angular/fire/firestore';
+import { from, Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class AuthService {
-  constructor() {}
+  constructor(private auth: Auth, private firestore: Firestore) {}
 
-  login(email: string, password: string): Observable<any> {
-    // Mock login logic: replace this with real authentication logic
-    if (email === 'test@example.com' && password === 'password') {
-      return of({ success: true }); // Simulate successful login
-    }
-    return of({ success: false }); // Simulate failed login
+  // Register and add user to Firestore
+  register(email: string, password: string, userData: any): Observable<User | null> {
+    return from(
+      createUserWithEmailAndPassword(this.auth, email, password)
+        .then(userCredential => {
+          const user = userCredential.user;
+
+          // Add user data to Firestore
+          return setDoc(doc(this.firestore, `users/${user.uid}`), {
+            uid: user.uid,
+            email: user.email,
+            ...userData // Spread additional data from the registration form
+          }).then(() => user);
+        })
+        .catch(error => {
+          console.error("Error registering user:", error);
+          return null;
+        })
+    );
+  }
+
+  // Login
+  login(email: string, password: string): Observable<User | null> {
+    return from(
+      signInWithEmailAndPassword(this.auth, email, password)
+        .then(userCredential => userCredential.user)
+        .catch(error => {
+          console.error("Error signing in:", error);
+          return null;
+        })
+    );
+  }
+
+  // Sign Out
+  signOut(): Observable<void> {
+    return from(signOut(this.auth).catch(error => {
+      console.error("Error signing out:", error);
+      throw error;
+    }));
+  }
+
+  // Get current user's UID
+  getCurrentUserUid(): string | null {
+    const user: User | null = this.auth.currentUser;  // Get the current user
+    return user ? user.uid : null;  // Return the UID if user exists, otherwise return null
   }
 }

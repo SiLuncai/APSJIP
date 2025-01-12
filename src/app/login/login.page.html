@@ -3,7 +3,7 @@
     <ion-card>
       <ion-card-header>
         <div class="image-container">
-          <ion-img src="assets/icon/logo.jfif" alt="Parent Image" class="parent-image"></ion-img>
+          <ion-img src="assets/icon/logo.png" alt="Parent Image" class="parent-image"></ion-img>
         </div>
         <h1 class="header-title">A Primary School Journey Into Programming</h1>
       </ion-card-header>
@@ -22,11 +22,12 @@
           <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
           <div class="button-container">
             <ion-button expand="full" type="submit" [disabled]="loginForm.invalid">Login</ion-button>
-            <ion-button color="secondary" routerLink="/registration" class="register-button">
-              Go to Registration
-            </ion-button>
           </div>
-          
+          <div class="button-container">
+            <ion-button color="secondary" routerLink="/registration" class="register-button">
+              Register
+            </ion-button>
+          </div>        
         </form>
       </ion-card-content>
     </ion-card>

@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { Auth } from '@angular/fire/auth';
+import { Auth, createUserWithEmailAndPassword } from '@angular/fire/auth';
+import { Firestore, doc, setDoc } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { AlertController } from '@ionic/angular'; // Import AlertController
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-parent-registration',
@@ -14,30 +14,45 @@ export class ParentRegistrationPage {
   email: string = '';
   password: string = '';
   phoneno: string = '';
+  role: string = 'parent';
   scode: string = '';
-  private predefinedCode: string = 'p_skbalok'; // Predefined code for validation
+  private predefinedCode: string = 'p_skbalok';
 
-  constructor(private auth: Auth, private router: Router, private alertController: AlertController) {} // Inject AlertController
+  constructor(
+    private auth: Auth,
+    private firestore: Firestore,
+    private router: Router,
+    private alertController: AlertController
+  ) {}
 
   async onSubmit() {
     // Validate the entered code
     if (this.scode !== this.predefinedCode) {
-      this.showAlert('Error', 'The code is incorrect. Please enter the correct code.');
-      return; // Stop the registration process
+      this.showAlert('Error', 'The code is incorrect. Please enter the correct code given by the school.');
+      return;
     }
-  
+
     try {
       const userCredential = await createUserWithEmailAndPassword(this.auth, this.email, this.password);
+      const user = userCredential.user;
+
+      // Save user data to Firestore
+      await setDoc(doc(this.firestore, `users/${user.uid}`), {
+        uid: user.uid,
+        name: this.name,
+        email: this.email,
+        phoneno: this.phoneno,
+        role: this.role,
+        scode: this.scode
+      });
+
       console.log('Registration successful:', userCredential);
-      
       this.router.navigate(['/login']); // Adjust to your desired route
-    } catch (error: any) { // Cast to any
+    } catch (error: any) {
       console.error('Registration error:', error);
-      // Show alert for registration errors
       this.showAlert('Registration Error', error.message);
     }
   }
-  
 
   goBack() {
     this.router.navigate(['/login']); // Adjust to your desired route
@@ -48,7 +63,7 @@ export class ParentRegistrationPage {
     const alert = await this.alertController.create({
       header: header,
       message: message,
-      buttons: ['Exit'] // Button to close the alert
+      buttons: ['Exit']
     });
 
     await alert.present();

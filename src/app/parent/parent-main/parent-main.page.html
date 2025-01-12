@@ -1,25 +1,23 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>Parent Main Page</ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content class="ion-padding">
-  <div class="image-container">
-    <ion-img src="assets/icon/favicon.png" alt="Parent Image" class="parent-image"></ion-img>
-  </div>
-  
-
-  <ion-grid>
-    <ion-row>
-      <ion-col>
-        <ion-button expand="full" routerLink="/student-result">Student Result</ion-button>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col>
-        <ion-button expand="full" routerLink="/login" fill="outline">Back</ion-button>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+<ion-content>
+  <div class="flex-center">
+    <ion-card>
+      <ion-card-header>
+        A Primary School Journey Into Programming
+      </ion-card-header>
+      <ion-card-content>
+        <ion-grid>
+          <ion-row>
+            <ion-col>
+              <ion-button expand="full" routerLink="/student-progress">Student Progress</ion-button>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <ion-button expand="full" routerLink="/login">Sign Out</ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card-content>
+    </ion-card>
+  </div> 
 </ion-content>

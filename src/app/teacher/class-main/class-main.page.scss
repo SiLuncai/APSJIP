@@ -1,0 +1,33 @@
+/* Make buttons more visually appealing */
+ion-button {
+    --background: #3880ff;
+    --color: white;
+    --border-radius: 5px;
+  }
+  
+  ion-button:hover {
+    --background: #3171e0;
+  }
+  
+  /* Add spacing and margin for better visual separation */
+  ion-card {
+    margin: 10px 0;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+  }
+  
+  ion-item {
+    margin-bottom: 15px;
+  }
+  
+  /* Styling for the 'Back' button */
+  .button-container {
+    margin-top: 20px;
+  }
+  
+  /* Center the spinner */
+  ion-spinner {
+    display: block;
+    margin: 0 auto;
+  }
+  

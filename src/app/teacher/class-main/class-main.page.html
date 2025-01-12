@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Class List</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!-- Input for student name -->
+  <ion-item>
+    <ion-label position="stacked">Student Name</ion-label>
+    <ion-input [(ngModel)]="studentName" placeholder="Enter student name"></ion-input>
+  </ion-item>
+
+  <!-- Loop through the classes and display them -->
+  <ion-list>
+    <ion-item *ngFor="let classItem of classes">
+      <ion-label>{{ classItem.name }}</ion-label>
+      
+      <ion-list>
+        <ion-item *ngFor="let student of classItem.students">
+          <ion-label>{{ student.name }}</ion-label>
+          <!-- Button to delete a student from the class -->
+          <ion-button color="danger" (click)="deleteStudentFromClass(classItem.id, student.id)">
+            Delete
+          </ion-button>
+        </ion-item>
+      </ion-list>
+
+      <!-- Add Student to Class -->
+      <ion-item>
+        <ion-button expand="full" (click)="addStudentToClass(classItem.id)">
+          Add Student
+        </ion-button>
+      </ion-item>
+    </ion-item>
+  </ion-list>
+
+  <!-- Back Button -->
+  <div class="button-container">
+    <ion-button expand="full" routerLink="/class-management">Add Class</ion-button>
+    <ion-button expand="full" routerLink="/teacher-main">Back</ion-button>
+  </div>
+</ion-content>

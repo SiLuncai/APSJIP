@@ -3,6 +3,7 @@ import { Auth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { AlertController } from '@ionic/angular';
+import { Firestore, doc, setDoc } from '@angular/fire/firestore';  // Firestore imports
 
 @Component({
   selector: 'app-student-registration',
@@ -14,10 +15,16 @@ export class StudentRegistrationPage {
   email: string = '';
   password: string = '';
   grade: string = '';
+  role: string = 'student';
   scode: string = '';
-  predefinedCode: string = 't_skbalok'; // Predefined code for validation
+  predefinedCode: string = 's_skbalok'; // Predefined code for validation
 
-  constructor(private auth: Auth, private router: Router, private alertController: AlertController) {}
+  constructor(
+    private auth: Auth, 
+    private router: Router, 
+    private alertController: AlertController, 
+    private firestore: Firestore // Inject Firestore
+  ) {}
 
   async onSubmit() {
     // Validate the entered code
@@ -27,11 +34,20 @@ export class StudentRegistrationPage {
     }
 
     try {
+      // Create the student user account
       const userCredential = await createUserWithEmailAndPassword(this.auth, this.email, this.password);
       console.log('Registration successful:', userCredential);
-      
-      // You can store additional student info in your database if needed
-      
+
+      // Store the student's data in Firestore
+      const studentDocRef = doc(this.firestore, `users/${userCredential.user.uid}`);
+      await setDoc(studentDocRef, {
+        name: this.name,
+        email: this.email,
+        grade: this.grade,
+        role: this.role,
+        createdAt: new Date().toISOString()
+      });
+
       this.router.navigate(['/login']); // Adjust to your desired route
     } catch (error: any) { // Handle error (using any type for simplicity)
       console.error('Registration error:', error);

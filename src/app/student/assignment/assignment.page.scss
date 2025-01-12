@@ -60,3 +60,7 @@ ion-card {
   font-size: 0.9rem;
   text-align: center;
 }
+
+ion-content{
+  --background: var(--ion-color-success);
+}

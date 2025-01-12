@@ -5,9 +5,9 @@ import { LoginPage } from './login.page';
 
 @NgModule({
   imports: [
-    IonicModule, // Add this
-    ReactiveFormsModule, // Add this
-    // ... other imports
+    IonicModule, 
+    ReactiveFormsModule, 
+   
   ],
   declarations: [LoginPage]
 })
