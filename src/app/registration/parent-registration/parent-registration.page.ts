@@ -16,7 +16,7 @@ export class ParentRegistrationPage {
   phoneno: string = '';
   role: string = 'parent';
   scode: string = '';
-  private predefinedCode: string = 'p_skbalok';
+  private predefinedCode: string = 'p_skbalokbaru';
 
   constructor(
     private auth: Auth,

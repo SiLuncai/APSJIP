@@ -10,6 +10,9 @@ import { LessonPage } from './student/lesson/lesson.page';
 import { TeacherAssignmentPage } from './teacher/teacher-assignment/teacher-assignment.page';
 import { ParentMainPage } from './parent/parent-main/parent-main.page';
 import { StudentMainPage } from './student/student-main/student-main.page';
+import { BeginnerLessonComponent  } from './student/beginner-lesson/beginner-lesson.component';
+import { AdvancedLessonComponent } from './student/advanced-lesson/advanced-lesson.component';
+import { IntermediateLessonComponent } from './student/intermediate-lesson/intermediate-lesson.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -80,6 +83,23 @@ const routes: Routes = [
     path: 'student-progress',
     loadChildren: () => import('./student-progress/student-progress.module').then( m => m.StudentProgressPageModule)
   },
+  {
+    path: 'beginner-lesson',
+    loadChildren: () => import('./student/beginner-lesson/beginner-lesson.module').then(m => m.BeginnerLessonModule)
+  },
+  {
+    path: 'intermediate-lesson',
+    loadChildren: () =>
+      import('./student/intermediate-lesson/intermediate-lesson.module').then(
+        (m) => m.IntermediateLessonModule
+      ),
+  },
+  
+  {
+    path: 'advanced-lesson',
+    loadChildren: () => import('./student/advanced-lesson/advanced-lesson.module').then(m => m.AdvancedLessonModule)
+  }
+  
 
 
 

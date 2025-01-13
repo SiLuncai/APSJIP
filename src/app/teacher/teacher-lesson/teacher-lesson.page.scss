@@ -1,4 +1,7 @@
-/* Global Styles */
+ion-content{
+  --background: var(--ion-color-success);
+}
+
 ion-header {
     --background: #4CAF50; /* Green background for header */
   }

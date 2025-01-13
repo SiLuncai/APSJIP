@@ -13,18 +13,17 @@
         <ion-grid>
           <ion-row>
             <ion-col>
-              <ion-button expand="block" color="primary" (click)="goToLesson('beginner')">Beginner</ion-button>
+              <ion-button expand="full" routerLink="/beginner-lesson">Beginner Lesson</ion-button>
             </ion-col>
           </ion-row>
           <ion-row>
             <ion-col>
-              <ion-button expand="block" color="secondary"
-                (click)="goToLesson('intermediate')">Intermediate</ion-button>
+              <ion-button expand="full" routerLink="/intermediate-lesson">Intermediate Lesson</ion-button>
             </ion-col>
           </ion-row>
           <ion-row>
             <ion-col>
-              <ion-button expand="block" color="tertiary" (click)="goToLesson('advanced')">Advanced</ion-button>
+              <ion-button expand="full" routerLink="/advanced-lesson" routerLinkActive="active">Advanced Lesson</ion-button>
             </ion-col>
           </ion-row>
           <ion-row>

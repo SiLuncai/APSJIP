@@ -17,7 +17,7 @@ export class StudentRegistrationPage {
   grade: string = '';
   role: string = 'student';
   scode: string = '';
-  predefinedCode: string = 's_skbalok'; // Predefined code for validation
+  predefinedCode: string = 's_skbalokbaru'; // Predefined code for validation
 
   constructor(
     private auth: Auth, 

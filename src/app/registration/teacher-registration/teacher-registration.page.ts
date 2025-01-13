@@ -17,7 +17,7 @@ export class TeacherRegistrationPage {
   subject: string = '';
   role: string = 'teacher';
   scode: string = '';
-  predefinedCode: string = 't_skbalok'; // Predefined code for validation
+  predefinedCode: string = 't_skbalokbaru'; // Predefined code for validation
 
   constructor(
     private auth: Auth, 

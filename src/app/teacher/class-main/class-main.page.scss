@@ -1,4 +1,7 @@
-/* Make buttons more visually appealing */
+ion-content{
+  --background: var(--ion-color-success);
+}
+
 ion-button {
     --background: #3880ff;
     --color: white;

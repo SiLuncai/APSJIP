@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Beginner Lesson</ion-title>
+  </ion-toolbar>
+  <ion-toolbar>
+    <ion-card-content>
+      Move your character to the finish box left and right
+    </ion-card-content>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="grid-container">
+    <ion-grid>
+      <ion-row>
+        <ion-col *ngFor="let cell of grid; let index = index">
+          <ion-card tappable>
+            <img [src]="getImageSource(index)" class="cell-image" />
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+
+  <!-- Navigation Buttons -->
+  <div class="button-container">
+    <ion-button (click)="moveCharacter('left')" fill="outline">
+      <ion-icon slot="icon-only" name="arrow-back-outline"></ion-icon>
+    </ion-button>
+    <ion-button (click)="moveCharacter('right')" fill="outline">
+      <ion-icon slot="icon-only" name="arrow-forward-outline"></ion-icon>
+    </ion-button>
+  </div>
+
+  <div class="button-container">
+    <ion-button routerLink="/student-main">Back</ion-button>
+  </div>
+</ion-content>

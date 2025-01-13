@@ -1,0 +1,44 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Advance Lesson</ion-title>
+  </ion-toolbar>
+  <ion-toolbar>
+    <ion-card-content>
+      Move your character to the finish box without hitting obstacles!
+    </ion-card-content>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="grid-container">
+    <ion-grid>
+      <ion-row *ngFor="let row of grid; let rowIndex = index">
+        <ion-col *ngFor="let cell of row; let colIndex = index" size="2">
+          <ion-card (click)="moveToCell(rowIndex, colIndex)" tappable>
+            <img [src]="getImageSource(rowIndex, colIndex)" class="cell-image" />
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+  
+  <!-- Navigation Buttons -->
+  <div class="button-container">
+    <ion-button (click)="moveCharacter('up')">
+      <ion-icon slot="start" name="arrow-up-outline"></ion-icon>
+    </ion-button>
+    <ion-button (click)="moveCharacter('left')">
+      <ion-icon slot="start" name="arrow-back-outline"></ion-icon>
+    </ion-button>
+    <ion-button (click)="moveCharacter('right')">
+      <ion-icon slot="start" name="arrow-forward-outline"></ion-icon>
+    </ion-button>
+    <ion-button (click)="moveCharacter('down')">
+      <ion-icon slot="start" name="arrow-down-outline"></ion-icon>
+    </ion-button>
+  </div>
+
+  <div class="button-container">
+    <ion-button routerLink="/student-main">Back</ion-button>
+  </div>
+</ion-content>
